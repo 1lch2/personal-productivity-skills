@@ -6,7 +6,7 @@ A collection of reusable skills for everyday development and personal productivi
 
 ## feature-map
 
-[feature-map](feature-map/SKILL.md) provides lightweight feature navigation through a `docs/feature-map.yaml` index and focused documents in `docs/features/`, with findings verified against the current source code. It supports code discovery, feature explanations, debugging, reviews, and development, keeping navigation up to date as features change.
+[feature-map](feature-map/SKILL.md) addresses the time agents waste searching for files and feature implementations. It maintains a feature catalog whose `docs/feature-map.yaml` index helps agents quickly locate relevant feature documents and source code. The catalog is updated and gradually expanded during development, reducing repeated searches in future tasks.
 
 Send the following instruction to your agent to install it. See [INSTALL.md](INSTALL.md) for installation and usage details:
 

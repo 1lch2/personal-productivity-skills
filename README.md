@@ -6,7 +6,7 @@
 
 ## feature-map
 
-[feature-map](feature-map/SKILL.md) 为项目提供轻量的功能导航：通过 `docs/feature-map.yaml` 索引和 `docs/features/` 专题文档定位功能，再核对当前源码。适用于代码定位、功能解释、排错、审查和开发，并随功能变更维护导航。
+[feature-map](feature-map/SKILL.md) 为解决 agent 在查找文件和功能实现上耗费大量时间的问题而生。它通过维护一份功能清单，让 agent 从 `docs/feature-map.yaml` 索引快速定位到相关专题文档和源码，并在开发过程中同步更新、逐步补全清单，减少后续任务中的重复搜索。
 
 将下面这条指令发给 agent 即可安装，具体步骤和用法见 [INSTALL.md](INSTALL.md)：
 
