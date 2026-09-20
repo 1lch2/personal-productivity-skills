@@ -1,22 +1,15 @@
 # Personal Productivity Skills
 
-A collection of reusable skills for everyday development and personal productivity. Each skill provides instructions that help coding agents work consistently within a project.
+简体中文 | [English](README.en.md)
+
+用于日常开发和个人生产力的可复用 skill 集合，帮助编码 agent 按一致的项目约定完成工作。
 
 ## feature-map
 
-[feature-map](feature-map/SKILL.md) helps agents locate, explain, and modify project features using a lightweight index (`docs/feature-map.yaml`) and focused feature documents (`docs/features/`), then verify their findings against the current source code.
+[feature-map](feature-map/SKILL.md) 为项目提供轻量的功能导航：通过 `docs/feature-map.yaml` 索引和 `docs/features/` 专题文档定位功能，再核对当前源码。适用于代码定位、功能解释、排错、审查和开发，并随功能变更维护导航。
 
-### Usage
+将下面这条指令发给 agent 即可安装，具体步骤和用法见 [INSTALL.md](INSTALL.md)：
 
-1. Copy the `feature-map/` directory into your project's `.agents/skills/feature-map/` directory.
-2. Ask your agent to use the skill, for example: “Use feature-map to locate and explain the login flow.” If your project has no feature map yet, ask the agent to create the index and feature documents for a specific feature, following the conventions in `SKILL.md`.
-3. We recommend adding the following instructions to your project's `AGENTS.md` so agents use and maintain the feature map as part of their normal workflow:
-
-```markdown
-## Feature Navigation
-
-- Before locating, explaining, or modifying a project feature's implementation, use the project-level [feature-map skill](.agents/skills/feature-map/SKILL.md). Start by matching the feature in [docs/feature-map.yaml](docs/feature-map.yaml), read the linked topic documents in `docs/features/` as needed, and then verify against the current source code.
-- When adding, changing, or removing features, or when refactoring affects the navigation map, follow the skill to update the affected entries within the same task. Do not modify files during read-only analysis. The navigation map is not yet comprehensive; do not expand the current task's scope just to fill gaps in it.
+```text
+请读取 https://github.com/1lch2/personal-productivity-skills 仓库中的 INSTALL.md，按其中说明将 feature-map 安装到当前项目，并添加推荐的 AGENTS.md 指令。
 ```
-
-The read-only instruction above takes precedence over the skill's default behavior of documenting newly confirmed features after analysis.
