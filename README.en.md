@@ -14,8 +14,14 @@ It distinguishes the vertical storytelling of landing pages from viewport layout
 
 [feature-map](feature-map/SKILL.md) addresses the time agents waste searching for files and feature implementations. It maintains a feature catalog whose `docs/feature-map.yaml` index helps agents quickly locate relevant feature documents and source code. The catalog is updated and gradually expanded during development, reducing repeated searches in future tasks.
 
+## test-value-review
+
+[test-value-review](test-value-review/SKILL.md) reviews unit and UI component tests in JS/TS and Python projects for whether they are actually worth keeping, rather than counting coverage. It applies four counterfactuals to each test: would it fail if the behaviour broke, what would be lost if it were deleted, would a pure refactor break it, and would it still pass if the fixed input were replaced? It labels tests as false confidence, low value, brittle, or strong, and ranks findings by ineffectiveness × importance.
+
+It ships with a scanner, a single-test runner, and a gated mutation probe: the scanner builds the worklist and heuristic signals, the runner confirms the baseline, and the probe temporarily changes one line only after explicit user consent to check whether the test can actually fail. The review is returned directly as delete/change/add recommendations with reasons; it writes no report file and leaves no code changes.
+
 Send the following instruction to your agent to install it. See [INSTALL.md](INSTALL.md) for installation and usage details:
 
 ```text
-Read INSTALL.md in https://github.com/1lch2/personal-productivity-skills, follow its instructions to install feature-map in the current project, and add the recommended AGENTS.md instructions.
+Read INSTALL.md in https://github.com/1lch2/personal-productivity-skills, follow its instructions to install the skills you need (feature-map / test-value-review) in the current project.
 ```

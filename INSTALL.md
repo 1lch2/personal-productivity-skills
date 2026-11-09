@@ -16,3 +16,21 @@
 The read-only instruction above takes precedence over the skill's default behavior of documenting newly confirmed features after analysis.
 
 When installing, preserve existing project instructions and any local skill customizations. Create `AGENTS.md` if needed, or update its existing Feature Navigation section without duplicating it.
+
+## test-value-review
+
+1. Copy the `test-value-review/` directory into your project's `.agents/skills/test-value-review/` directory.
+2. The bundled scripts need Python 3.9+ and use only the standard library; no `pip` or `npm` install is required. Tests themselves still need the project's normal dependencies.
+3. Ask your agent to use it, for example: “Use test-value-review to review the tests under `src/`” or “Review the tests in this PR with test-value-review.” The review is returned directly in the conversation; it does not write a report file.
+4. Default behavior is read-only: the agent reports what to delete, change, or add, and leaves the edits to you. Running a single test file or test name is allowed when it helps the judgment. A mutation probe temporarily modifies production source, so it requires your explicit permission.
+5. We recommend adding the following to your project's `AGENTS.md`:
+
+```markdown
+## Test Review
+
+- When a PR adds or changes tests, review them with the project-level [test-value-review skill](.agents/skills/test-value-review/SKILL.md).
+- Return delete/change/add recommendations with concrete evidence directly in the conversation. Do not create report files, install dependencies, update snapshots, run the full suite, or modify source for mutation probing without explicit permission.
+```
+
+The `evals/` directory is optional. It contains a small calibration set and `check_fixtures.py` for checking the scanner's signals; it is not part of the runtime review.
+

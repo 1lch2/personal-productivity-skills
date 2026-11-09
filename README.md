@@ -14,8 +14,14 @@
 
 [feature-map](feature-map/SKILL.md) 为解决 agent 在查找文件和功能实现上耗费大量时间的问题而生。它通过维护一份功能清单，让 agent 从 `docs/feature-map.yaml` 索引快速定位到相关专题文档和源码，并在开发过程中同步更新、逐步补全清单，减少后续任务中的重复搜索。
 
+## test-value-review
+
+[test-value-review](test-value-review/SKILL.md) 用于审查 JS/TS 与 Python 项目的单元测试和 UI 组件测试是否真有价值，而不是数覆盖率。它用四个反事实判断每条测试：改坏行为会不会红、删掉会漏什么、只改结构会不会红、换掉固定输入还能不能通过；据此标出假信心、低价值、脆弱和有效测试，并按“无效 × 重要”排序。
+
+它自带扫描器、单测运行器和受限的变异探测器：扫描器整理测试清单与可疑信号，运行器确认基线，变异探测器在用户明确同意后临时改一处源码，验证测试是否真的能失败。审查结束后直接回复要删、要改、要加的内容和理由，不生成报告文件，也不留下代码改动。
+
 将下面这条指令发给 agent 即可安装，具体步骤和用法见 [INSTALL.md](INSTALL.md)：
 
 ```text
-请读取 https://github.com/1lch2/personal-productivity-skills 仓库中的 INSTALL.md，按其中说明将 feature-map 安装到当前项目，并添加推荐的 AGENTS.md 指令。
+请读取 https://github.com/1lch2/personal-productivity-skills 仓库中的 INSTALL.md，按其中说明把需要的 skill（feature-map / test-value-review）安装到当前项目。
 ```

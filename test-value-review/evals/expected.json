@@ -1,0 +1,142 @@
+{
+  "schema": "test-value-review/evals/v1",
+  "fixtures_root": "evals/fixtures",
+  "note": "Calibration set, not a CI oracle. scanner_signals are machine-checked by check_fixtures.py; labels and must_mention are a human/agent checklist.",
+  "cases": [
+    {
+      "file": "react/src/UserCard.test.tsx",
+      "name": "renders the fixed name",
+      "label": "WEAK",
+      "importance": "M",
+      "reason": "Single literal value; hardcoding the prop value still passes. It proves text exists, not that the prop is used.",
+      "must_mention": ["hardcode", "second value"],
+      "scanner_signals": ["literal_ui_query"]
+    },
+    {
+      "file": "react/src/UserCard.test.tsx",
+      "name": "renders two different names",
+      "label": "STRONG",
+      "importance": "M",
+      "reason": "Two inputs, two assertions; catches a component that ignores the prop.",
+      "must_mention": [],
+      "scanner_signals": ["literal_ui_query"]
+    },
+    {
+      "file": "react/src/UserCard.test.tsx",
+      "name": "calls onSelect when clicked",
+      "label": "WEAK",
+      "importance": "M",
+      "reason": "Only asserts the spy was called; no argument, visible state, or outcome.",
+      "must_mention": ["spy", "outcome"],
+      "scanner_signals": ["click_spy_only"]
+    },
+    {
+      "file": "react/src/UserCard.test.tsx",
+      "name": "matches the snapshot",
+      "label": "BRITTLE",
+      "importance": "M",
+      "reason": "Snapshot is the only assertion; it changes for refactors and can be re-blessed.",
+      "must_mention": ["snapshot", "update"],
+      "scanner_signals": ["snapshot_only"]
+    },
+    {
+      "file": "react/src/formatPrice.test.ts",
+      "name": "is self-consistent",
+      "label": "FAKE",
+      "importance": "M",
+      "reason": "Both sides call formatPrice; the test moves with the bug.",
+      "must_mention": ["same expression", "still passes"],
+      "scanner_signals": ["tautological"]
+    },
+    {
+      "file": "react/src/formatPrice.test.ts",
+      "name": "formats a hand-computed value",
+      "label": "STRONG",
+      "importance": "M",
+      "reason": "Independent expected value; catches a changed formatter.",
+      "must_mention": [],
+      "scanner_signals": []
+    },
+    {
+      "file": "python/test_discount.py",
+      "name": "test_silver_discount_is_hand_computed",
+      "label": "STRONG",
+      "importance": "H",
+      "reason": "Hand-computed pricing rule; catches a changed rate.",
+      "must_mention": [],
+      "scanner_signals": []
+    },
+    {
+      "file": "python/test_discount.py",
+      "name": "test_discount_is_self_consistent",
+      "label": "FAKE",
+      "importance": "H",
+      "reason": "Same call on both sides; a pricing bug still passes.",
+      "must_mention": ["same call", "still passes"],
+      "scanner_signals": ["tautological"]
+    },
+    {
+      "file": "python/test_discount.py",
+      "name": "test_unknown_tier_raises",
+      "label": "STRONG",
+      "importance": "M",
+      "reason": "Asserts the documented error contract for an invalid tier.",
+      "must_mention": [],
+      "scanner_signals": []
+    },
+    {
+      "file": "python/test_parser.py",
+      "name": "test_invalid_int_raises",
+      "label": "STRONG",
+      "importance": "M",
+      "reason": "Asserts the error path with pytest.raises.",
+      "must_mention": [],
+      "scanner_signals": []
+    },
+    {
+      "file": "python/test_parser.py",
+      "name": "test_invalid_int_is_swallowed",
+      "label": "WEAK",
+      "importance": "M",
+      "reason": "Narrow `except ValueError` does not catch the AssertionError, so the test can still go red; it duplicates pytest.raises with a worse failure message.",
+      "must_mention": ["narrow", "duplicate"],
+      "scanner_signals": []
+    },
+    {
+      "file": "python/test_parser.py",
+      "name": "test_invalid_int_hides_assertion",
+      "label": "FAKE",
+      "importance": "M",
+      "reason": "`except Exception` catches the AssertionError and passes; the test cannot go red.",
+      "must_mention": ["Exception", "cannot fail"],
+      "scanner_signals": ["assert_in_try"]
+    },
+    {
+      "file": "python/test_service.py",
+      "name": "test_create_calls_repo",
+      "label": "WEAK",
+      "importance": "M",
+      "reason": "Only asserts the mock was called; no payload or persisted state.",
+      "must_mention": ["mock", "payload"],
+      "scanner_signals": ["mock_interaction_only"]
+    },
+    {
+      "file": "python/test_service.py",
+      "name": "test_create_persists_user",
+      "label": "STRONG",
+      "importance": "M",
+      "reason": "Uses a fake repo and asserts the stored row and returned value.",
+      "must_mention": [],
+      "scanner_signals": []
+    },
+    {
+      "file": "python/test_service.py",
+      "name": "test_create_does_not_raise",
+      "label": "WEAK",
+      "importance": "M",
+      "reason": "Only checks that creation does not crash; it does not check what was created.",
+      "must_mention": ["crash", "no assertion"],
+      "scanner_signals": ["no_assertion"]
+    }
+  ]
+}
